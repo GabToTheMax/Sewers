@@ -11,27 +11,31 @@ namespace SewersApp3
         bool shopOpen = true;
 
         // -- Images
-
+        static Image circle = Image.FromFile("redcircle.png");
         static Image blank = Image.FromFile("blank.png");
+
         static Image house = Image.FromFile("house1.png");
         static Image obama = Image.FromFile("obama.png");
         static Image trump = Image.FromFile("trump.png");
+        static Image wilson = Image.FromFile("tileA.png");
 
-        static Image circle = Image.FromFile("redcircle.png");
 
         // -- Tiles
 
         static TileDefinition emptyTile = new TileDefinition("Blank", blank, [false, false, false, false]);
+        static TileDefinition AvailableTile = new TileDefinition("Available", circle, [false, false, false, false]);
+        static TileDefinition SelectedTile = emptyTile;
+
         static TileDefinition lightroomsTile = new TileDefinition("Lightrooms", house, [true, true, true, true]);
         static TileDefinition trumpTile = new TileDefinition("Trump", trump, [true, false, true, false]);
         static TileDefinition obamaTile = new TileDefinition("Obama", obama, [false, true, false, true]);
-        static TileDefinition AvailableTile = new TileDefinition("Available", circle, [false, false, false, false]);
-        static TileDefinition SelectedTile = emptyTile;
+        static TileDefinition wilsonTile = new TileDefinition("Wilson", wilson, [true, false, false, false]);
+
         static int SelectedRotation = 0;
 
         static List<TileDefinition> TileList = new List<TileDefinition>
         ([
-            lightroomsTile, obamaTile, trumpTile
+            lightroomsTile, obamaTile, trumpTile, wilsonTile
         ]);
 
         // -- Classes
@@ -161,6 +165,7 @@ namespace SewersApp3
             label1.Text = "Selected tile: " + TileList[(((PictureBox)sender).Location.Y / 100)].name;
             SelectedPicture.Image = SelectedTile.image;
             SelectedPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+            SelectedRotation = 0;
 
             /*
             foreach (Tile i in TileBoard)
@@ -209,9 +214,9 @@ namespace SewersApp3
                 switch ((direction + i.rotation) % 4)
                 {
                     case 0: if (i.yPos - 1 >= 0     && TileBoard[i.xPos, i.yPos - 1].defintion == emptyTile && SelectedTile.directions[(2 + SelectedRotation) % 4]) { return true; } else { return false; };
-                    case 1: if (i.xPos + 1 < BoardX && TileBoard[i.xPos + 1, i.yPos].defintion == emptyTile && SelectedTile.directions[(3 + SelectedRotation) % 4]) { return true; } else { return false; };
+                    case 1: if (i.xPos + 1 < BoardX && TileBoard[i.xPos + 1, i.yPos].defintion == emptyTile && SelectedTile.directions[(1 + SelectedRotation) % 4]) { return true; } else { return false; };
                     case 2: if (i.yPos + 1 < BoardY && TileBoard[i.xPos, i.yPos + 1].defintion == emptyTile && SelectedTile.directions[(0 + SelectedRotation) % 4]) { return true; } else { return false; };
-                    case 3: if (i.xPos - 1 >= 0     && TileBoard[i.xPos - 1, i.yPos].defintion == emptyTile && SelectedTile.directions[(1 + SelectedRotation) % 4]) { return true; } else { return false; };
+                    case 3: if (i.xPos - 1 >= 0     && TileBoard[i.xPos - 1, i.yPos].defintion == emptyTile && SelectedTile.directions[(3 + SelectedRotation) % 4]) { return true; } else { return false; };
                 }
                 return false;
             }
@@ -274,20 +279,26 @@ namespace SewersApp3
 
         private void SelectLeft_Click(object sender, EventArgs e)
         {
-            SelectedRotation--;
-            if (SelectedRotation == -1) { SelectedRotation = 3; }
-            SelectedPicture.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            SelectedPicture.Image = SelectedTile.image;
-            UpdateAvailableTiles();
+            if(SelectedTile != emptyTile)
+            {
+                SelectedRotation--;
+                if (SelectedRotation == -1) { SelectedRotation = 3; }
+                SelectedPicture.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                SelectedPicture.Image = SelectedTile.image;
+                UpdateAvailableTiles();
+            }
         }
 
         private void SelectRight_Click(object sender, EventArgs e)
         {
-            SelectedRotation++;
-            if (SelectedRotation == 4) { SelectedRotation = 0; }
-            SelectedPicture.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            SelectedPicture.Image = SelectedTile.image;
-            UpdateAvailableTiles();
+            if(SelectedTile != emptyTile)
+            {
+                SelectedRotation++;
+                if (SelectedRotation == 4) { SelectedRotation = 0; }
+                SelectedPicture.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                SelectedPicture.Image = SelectedTile.image;
+                UpdateAvailableTiles();
+            }
         }
     }
 }
