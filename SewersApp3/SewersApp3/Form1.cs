@@ -14,12 +14,6 @@ namespace SewersApp3
         static Image circle = Image.FromFile("redcircle.png");
         static Image blank = Image.FromFile("blank.png");
 
-        static Image house = Image.FromFile("house1.png");
-        static Image obama = Image.FromFile("obama.png");
-        static Image trump = Image.FromFile("trump.png");
-        static Image wilson = Image.FromFile("tileA.png");
-
-
         // -- Tiles
 
         static TileDefinition emptyTile = new TileDefinition("Blank", blank, [false, false, false, false]);
