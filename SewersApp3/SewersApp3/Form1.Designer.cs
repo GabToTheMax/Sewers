@@ -40,32 +40,36 @@
             // 
             // PanelBoard
             // 
-            PanelBoard.Location = new Point(126, 29);
+            PanelBoard.Location = new Point(180, 48);
+            PanelBoard.Margin = new Padding(4, 5, 4, 5);
             PanelBoard.Name = "PanelBoard";
-            PanelBoard.Size = new Size(1000, 600);
+            PanelBoard.Size = new Size(1429, 1000);
             PanelBoard.TabIndex = 0;
             // 
             // ShopPanel
             // 
-            ShopPanel.Location = new Point(0, 204);
+            ShopPanel.Location = new Point(0, 340);
+            ShopPanel.Margin = new Padding(4, 5, 4, 5);
             ShopPanel.Name = "ShopPanel";
-            ShopPanel.Size = new Size(120, 425);
+            ShopPanel.Size = new Size(171, 708);
             ShopPanel.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(1176, 109);
+            label1.Location = new Point(1680, 182);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(59, 25);
             label1.TabIndex = 2;
             label1.Text = "label1";
             // 
             // ShopDebug
             // 
-            ShopDebug.Location = new Point(1160, 138);
+            ShopDebug.Location = new Point(1657, 230);
+            ShopDebug.Margin = new Padding(4, 5, 4, 5);
             ShopDebug.Name = "ShopDebug";
-            ShopDebug.Size = new Size(75, 23);
+            ShopDebug.Size = new Size(107, 38);
             ShopDebug.TabIndex = 3;
             ShopDebug.Text = "Start Shop";
             ShopDebug.UseVisualStyleBackColor = true;
@@ -73,17 +77,19 @@
             // 
             // SelectedPicture
             // 
-            SelectedPicture.Location = new Point(9, 29);
+            SelectedPicture.Location = new Point(13, 48);
+            SelectedPicture.Margin = new Padding(4, 5, 4, 5);
             SelectedPicture.Name = "SelectedPicture";
-            SelectedPicture.Size = new Size(108, 104);
+            SelectedPicture.Size = new Size(154, 173);
             SelectedPicture.TabIndex = 4;
             SelectedPicture.TabStop = false;
             // 
             // SelectionLeft
             // 
-            SelectionLeft.Location = new Point(9, 138);
+            SelectionLeft.Location = new Point(13, 230);
+            SelectionLeft.Margin = new Padding(4, 5, 4, 5);
             SelectionLeft.Name = "SelectionLeft";
-            SelectionLeft.Size = new Size(43, 23);
+            SelectionLeft.Size = new Size(61, 38);
             SelectionLeft.TabIndex = 5;
             SelectionLeft.Text = "left";
             SelectionLeft.UseVisualStyleBackColor = true;
@@ -91,9 +97,10 @@
             // 
             // SelectionRight
             // 
-            SelectionRight.Location = new Point(68, 138);
+            SelectionRight.Location = new Point(97, 230);
+            SelectionRight.Margin = new Padding(4, 5, 4, 5);
             SelectionRight.Name = "SelectionRight";
-            SelectionRight.Size = new Size(49, 23);
+            SelectionRight.Size = new Size(70, 38);
             SelectionRight.TabIndex = 6;
             SelectionRight.Text = "right";
             SelectionRight.UseVisualStyleBackColor = true;
@@ -101,9 +108,9 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1276, 726);
+            ClientSize = new Size(1823, 1210);
             Controls.Add(SelectionRight);
             Controls.Add(SelectionLeft);
             Controls.Add(SelectedPicture);
@@ -111,6 +118,7 @@
             Controls.Add(label1);
             Controls.Add(ShopPanel);
             Controls.Add(PanelBoard);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;

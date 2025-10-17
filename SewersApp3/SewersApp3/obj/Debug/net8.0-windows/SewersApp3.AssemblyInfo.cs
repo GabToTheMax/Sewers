@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SewersApp3")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1de11c95c9a49f74a51e620b1b5e739f7344b27e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SewersApp3")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SewersApp3")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

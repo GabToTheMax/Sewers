@@ -1,3 +1,8 @@
+using Microsoft.VisualBasic.Devices;
+using SewersApp3.Properties;
+using System.Runtime.Versioning;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+
 namespace SewersApp3
 {
 
@@ -10,26 +15,40 @@ namespace SewersApp3
         static Tile[,] TileBoard = new Tile[BoardX, BoardY];
         bool shopOpen = true;
 
+        /*
+        static Image house = Image.FromFile("house1.png");
+        static Image obama = Image.FromFile("obama.png");
+        static Image trump = Image.FromFile("trump.png");
+        static Image wilson = Image.FromFile("wilson.png");
         // -- Images
         static Image circle = Image.FromFile("redcircle.png");
         static Image blank = Image.FromFile("blank.png");
+        */ // Testing images 
 
         // -- Tiles
 
-        static TileDefinition emptyTile = new TileDefinition("Blank", blank, [false, false, false, false]);
-        static TileDefinition AvailableTile = new TileDefinition("Available", circle, [false, false, false, false]);
+        static TileDefinition emptyTile = new TileDefinition("Blank", Resources.blank, [false, false, false, false]);
+        static TileDefinition AvailableTile = new TileDefinition("Available", Resources.redcircle, [false, false, false, false]);
         static TileDefinition SelectedTile = emptyTile;
 
+        /*
         static TileDefinition lightroomsTile = new TileDefinition("Lightrooms", house, [true, true, true, true]);
         static TileDefinition trumpTile = new TileDefinition("Trump", trump, [true, false, true, false]);
         static TileDefinition obamaTile = new TileDefinition("Obama", obama, [false, true, false, true]);
-        static TileDefinition wilsonTile = new TileDefinition("Wilson", wilson, [true, false, false, false]);
+        static TileDefinition wilsonTile = new TileDefinition("Wilson", wilson, [false, false, true, false]); */ // Testing tiles
+
+        static TileDefinition lightroomsTile = new TileDefinition("LightroomsTile", Resources.TileX, [true, true, true, true]);
+        static TileDefinition TileX = new TileDefinition("TileX", Resources.TileX, [true, true, true, true]);
+        static TileDefinition TileI = new TileDefinition("TileI", Resources.TileI, [true, false, true, false]);
+        static TileDefinition TileH = new TileDefinition("TileH", Resources.TileH, [false, true, false, true]);
+        static TileDefinition TileA = new TileDefinition("TileA", Resources.TileA, [false, false, true, false]);
+        static TileDefinition TileT = new TileDefinition("TileT", Resources.TileT, [false, true, true, true]);
 
         static int SelectedRotation = 0;
 
         static List<TileDefinition> TileList = new List<TileDefinition>
         ([
-            lightroomsTile, obamaTile, trumpTile, wilsonTile
+            TileX, TileI, TileH, TileA, TileT
         ]);
 
         // -- Classes
@@ -155,12 +174,18 @@ namespace SewersApp3
 
         void SelectShopPicture(object sender, EventArgs e)
         {
+            switch (SelectedRotation)
+            {
+                case 0: break;
+                case 1: SelectedTile.image.RotateFlip(RotateFlipType.Rotate270FlipNone); SelectedPicture.Image = SelectedTile.image; break;
+                case 2: SelectedTile.image.RotateFlip(RotateFlipType.Rotate180FlipNone); SelectedPicture.Image = SelectedTile.image; break;
+                case 3: SelectedTile.image.RotateFlip(RotateFlipType.Rotate90FlipNone); SelectedPicture.Image = SelectedTile.image; break;
+            }
+            SelectedRotation = 0;
             SelectedTile = TileList[(((PictureBox)sender).Location.Y / 100)];
             label1.Text = "Selected tile: " + TileList[(((PictureBox)sender).Location.Y / 100)].name;
             SelectedPicture.Image = SelectedTile.image;
             SelectedPicture.SizeMode = PictureBoxSizeMode.StretchImage;
-            SelectedRotation = 0;
-
             /*
             foreach (Tile i in TileBoard)
             {
@@ -277,7 +302,7 @@ namespace SewersApp3
             {
                 SelectedRotation--;
                 if (SelectedRotation == -1) { SelectedRotation = 3; }
-                SelectedPicture.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                SelectedTile.image.RotateFlip(RotateFlipType.Rotate270FlipNone);
                 SelectedPicture.Image = SelectedTile.image;
                 UpdateAvailableTiles();
             }
@@ -289,7 +314,7 @@ namespace SewersApp3
             {
                 SelectedRotation++;
                 if (SelectedRotation == 4) { SelectedRotation = 0; }
-                SelectedPicture.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                SelectedTile.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 SelectedPicture.Image = SelectedTile.image;
                 UpdateAvailableTiles();
             }
